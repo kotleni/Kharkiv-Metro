@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="array_name">
+        <item>Повноекранна</item>
+        <item>Баннер</item>
+    </string-array>
+</resources>

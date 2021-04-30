@@ -1,0 +1,20 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.ХаркiвМетро" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">#d63a4f</item>
+        <item name="colorPrimaryDark">#BC3446</item>
+
+        <item name="android:textColorPrimary">#ffffff</item>
+
+        <item name="android:windowActionBar">true</item>
+        <item name="android:windowNoTitle">false</item>
+
+        <item name="android:textAppearanceLargePopupMenu">@style/MyOverflowItemCollor</item>
+        <item name="md_color_title">#212121</item>
+        <item name="md_color_content">#3A3A3A</item>
+    </style>
+
+    <style name="MyOverflowItemCollor" parent="android:TextAppearance.Holo.Widget.PopupMenu.Large">
+        <item name="android:textColor">#212121</item>
+        <item name="android:textSize">16dp</item>
+    </style>
+</resources>

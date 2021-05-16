@@ -3,6 +3,7 @@ package unicon.metro.kharkiv
 import android.graphics.Paint
 import android.graphics.Rect
 import android.text.TextPaint
+import android.view.ScaleGestureDetector
 
 fun getTextBackgroundSize(
     x: Float,

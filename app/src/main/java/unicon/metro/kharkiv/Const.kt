@@ -1,7 +1,7 @@
 package unicon.metro.kharkiv
 
 // booleans
-const val DEBUG = true
+const val DEBUG = false
 const val REMOVE_ADD = false
 
 // urls

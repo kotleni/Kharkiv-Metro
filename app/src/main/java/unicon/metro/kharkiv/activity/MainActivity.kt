@@ -183,7 +183,6 @@ class MainActivity : Activity() {
         MaterialDialog(this, BottomSheet(LayoutMode.WRAP_CONTENT)).show {
             title(-1, resources.getString(st.name!!))
             message(-1, getString(st.about))
-
         }
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -203,7 +202,7 @@ class MainActivity : Activity() {
                             it.apply()
                         }
 
-                        println("isBanner => ${(index != 0)}")
+                        if(DEBUG) println("isBanner => ${(index != 0)}")
                     }
                     checkItem(if(getSharedPreferences("main", Context.MODE_PRIVATE).getBoolean("isBanner", true)) 1 else 0)
 
@@ -221,10 +220,10 @@ class MainActivity : Activity() {
                 val icon = dialog.getCustomView().findViewById<ImageView>(R.id.icon)
 
                 icon.setOnClickListener {
-                    it.animate().also {anim ->
-                        anim.rotation(it.rotation + 360f)
-                        anim.duration = 500
-                        anim.start()
+                    with(it.animate()) {
+                        rotation(it.rotation + 360f)
+                        duration = 500
+                        start()
                     }
                 }
 
@@ -233,8 +232,6 @@ class MainActivity : Activity() {
         }
         return super.onOptionsItemSelected(item)
     }
-
-
 
     /* загрузить и отобразить рекламу */
     private fun loadAds(isBanner: Boolean) {

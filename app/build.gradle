@@ -9,11 +9,12 @@ android {
 
     defaultConfig {
         applicationId "unicon.metro.kharkiv"
+
         minSdkVersion 21
         targetSdkVersion 30
 
-        versionCode 9
-        versionName '1.8'
+        versionCode 10
+        versionName '1.9'
     }
 
     buildTypes {
@@ -22,10 +23,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }

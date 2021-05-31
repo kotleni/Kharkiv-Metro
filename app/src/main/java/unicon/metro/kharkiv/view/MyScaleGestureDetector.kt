@@ -1,4 +1,4 @@
-package unicon.metro.kharkiv
+package unicon.metro.kharkiv.view
 
 import android.content.Context
 import android.os.Build
@@ -9,9 +9,9 @@ import android.view.MotionEvent
 import android.view.ViewConfiguration
 
 class MyScaleGestureDetector @JvmOverloads constructor(
-    private val mContext: Context,
-    private val mListener: OnScaleGestureListener,
-    handler: Handler? = null
+        private val mContext: Context,
+        private val mListener: OnScaleGestureListener,
+        handler: Handler? = null
 ) {
     interface OnScaleGestureListener {
         fun onScale(detector: MyScaleGestureDetector?): Boolean
@@ -20,7 +20,7 @@ class MyScaleGestureDetector @JvmOverloads constructor(
     }
 
     open class SimpleOnScaleGestureListener :
-        OnScaleGestureListener {
+            OnScaleGestureListener {
         override fun onScale(detector: MyScaleGestureDetector?): Boolean {
             return false
         }

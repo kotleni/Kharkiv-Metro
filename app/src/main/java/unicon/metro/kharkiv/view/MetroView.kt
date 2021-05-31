@@ -1,4 +1,4 @@
-package unicon.metro.kharkiv
+package unicon.metro.kharkiv.view
 
 import android.content.Context
 import android.graphics.Canvas
@@ -7,8 +7,8 @@ import android.graphics.Paint
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.MotionEvent
-import android.view.ScaleGestureDetector
 import android.view.View
+import unicon.metro.kharkiv.*
 import unicon.metro.kharkiv.types.Point
 import unicon.metro.kharkiv.types.Size
 import unicon.metro.kharkiv.types.Vector
@@ -59,7 +59,7 @@ class MetroView(var ctx: Context, var attr: AttributeSet) : View(ctx, attr) {
         textPaint.textAlign = Paint.Align.CENTER
 
         // настраиваем детектор зума
-        mScaleGestureDetector = MyScaleGestureDetector(ctx, MetroView.ScaleListener(this))
+        mScaleGestureDetector = MyScaleGestureDetector(ctx, ScaleListener(this))
         mScaleGestureDetector!!.isQuickScaleEnabled = SCALE_QUICK_ENABLE
 
         // обрабатываем нажатия

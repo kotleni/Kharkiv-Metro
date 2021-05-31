@@ -3,6 +3,7 @@ package unicon.metro.kharkiv.activity
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
@@ -10,6 +11,7 @@ import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Toast
 import com.afollestad.materialdialogs.LayoutMode
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
@@ -22,33 +24,118 @@ import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import unicon.metro.kharkiv.*
 import unicon.metro.kharkiv.R
+import unicon.metro.kharkiv.dialog.SplashDialog
 import unicon.metro.kharkiv.types.Point
 import unicon.metro.kharkiv.types.Vector
 import unicon.metro.kharkiv.types.elements.BaseElement
 import unicon.metro.kharkiv.types.elements.BranchElement
 import unicon.metro.kharkiv.types.elements.TransElement
+import unicon.metro.kharkiv.view.MetroView
+import kotlin.concurrent.thread
 
 class MainActivity : Activity() {
+    // view
     private var metroview: MetroView? = null
-    private var mapData: ArrayList<BaseElement>? = null
+    private var linear: LinearLayout? = null
 
+    // ads
     private var mInterstitialAd: InterstitialAd? = null
     private var adView: AdView? = null
+
+    // data
+    private var mapData: ArrayList<BaseElement>? = null
     private var isBanner = false
+
+    // other
+    private var prefs: SharedPreferences? = null
+    private var splash: SplashDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        isBanner = getSharedPreferences("main", Context.MODE_PRIVATE).getBoolean("isBanner", true)
+        // получаем view
+        metroview = findViewById(R.id.metroview)
+        linear = findViewById(R.id.linear)
 
-        if(!REMOVE_ADD) loadAds(isBanner)
-        setupMapData()
-        setupMap()
+        // загружаем настройки
+        prefs = getSharedPreferences("main", Context.MODE_PRIVATE)
+        isBanner = prefs!!.getBoolean("isBanner", true)
+
+        // splash
+        splash = SplashDialog(this)
+        splash!!.show()
+
+        // запускаем фоновый поток
+        doBackground()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.actionbar, menu)
+
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.noads -> {
+                MaterialDialog(this, BottomSheet(LayoutMode.WRAP_CONTENT)).show {
+                    title(-1, getString(R.string.noads))
+                    listItemsSingleChoice(R.array.array_name) { dialog, index, text ->
+                        prefs!!.edit().also {
+                            it.putBoolean("isBanner", (index != 0))
+                            it.apply()
+                        }
+
+                        if(DEBUG) println("isBanner => ${(index != 0)}")
+                    }
+                    checkItem(if(prefs!!.getBoolean("isBanner", true)) 1 else 0)
+
+                }
+            }
+            R.id.googlrplay -> {
+                val browserIntent2 = Intent(Intent.ACTION_VIEW, Uri.parse(MARKET_URL))
+                startActivity(browserIntent2)
+            }
+            R.id.about -> {
+                val dialog = MaterialDialog(this, BottomSheet(LayoutMode.WRAP_CONTENT)).show {
+                    customView(R.layout.about)
+                }
+
+                val icon = dialog.getCustomView().findViewById<ImageView>(R.id.icon)
+
+                icon.setOnLongClickListener {
+                    dialog.dismiss()
+                    Toast.makeText(this, "What are you doing in my fridge?", Toast.LENGTH_SHORT)
+                            .show()
+
+                    true
+                }
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    /* загружаем данные в фоне */
+    private fun doBackground() = thread {
+        setupMapData()
+
+        // возращаемся в ui поток
+        runOnUiThread {
+            splash!!.cancel()
+
+            if(!REMOVE_ADD) loadAds(isBanner)
+            setupMap()
+
+            metroview!!.invalidate()
+        }
+    }
+
+    /* инициализировать данные для карты */
     private fun setupMapData() {
         mapData = ArrayList()
+
+        // зеленая ветка
         mapData!!.add(BranchElement(listOf(
                 Point(Vector(173, 34), R.string.name_peremoga,
                     R.string.desc_peremoga
@@ -152,6 +239,8 @@ class MainActivity : Activity() {
                 )
         ), Color.parseColor("#4062A5")))
 
+        // пересадки
+
         mapData!!.add(TransElement(
                 Vector(151, 208),
                 Vector(162, 197)
@@ -168,15 +257,14 @@ class MainActivity : Activity() {
         ))
     }
 
+    /* настраиваем view карты */
     private fun setupMap() {
-        metroview = findViewById(R.id.metroview)
         metroview!!.setData(mapData!!)
-        metroview!!.prepare(findViewById<LinearLayout>(R.id.linear))
-        metroview!!.setOnItemClickListener {
-            showDialog(it)
-        }
+        metroview!!.prepare(linear!!)
+        metroview!!.setOnItemClickListener { showDialog(it) }
     }
 
+    /* показать диалог */
     private fun showDialog(st: Point?) {
         if(st == null) return
 
@@ -185,91 +273,44 @@ class MainActivity : Activity() {
             message(-1, getString(st.about))
         }
     }
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.actionbar, menu)
-
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.noads -> {
-                MaterialDialog(this, BottomSheet(LayoutMode.WRAP_CONTENT)).show {
-                    title(-1, getString(R.string.noads))
-                    listItemsSingleChoice(R.array.array_name) { dialog, index, text ->
-                        getSharedPreferences("main", Context.MODE_PRIVATE).edit().also {
-                            it.putBoolean("isBanner", (index != 0))
-                            it.apply()
-                        }
-
-                        if(DEBUG) println("isBanner => ${(index != 0)}")
-                    }
-                    checkItem(if(getSharedPreferences("main", Context.MODE_PRIVATE).getBoolean("isBanner", true)) 1 else 0)
-
-                }
-            }
-            R.id.googlrplay -> {
-                val browserIntent2 = Intent(Intent.ACTION_VIEW, Uri.parse(MARKET_URL))
-                startActivity(browserIntent2)
-            }
-            R.id.about -> {
-                val dialog = MaterialDialog(this, BottomSheet(LayoutMode.WRAP_CONTENT)).show {
-                    customView(R.layout.about)
-                }
-
-                val icon = dialog.getCustomView().findViewById<ImageView>(R.id.icon)
-
-                icon.setOnClickListener {
-                    with(it.animate()) {
-                        rotation(it.rotation + 360f)
-                        duration = 500
-                        start()
-                    }
-                }
-
-                icon.setOnLongClickListener { true }
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
 
     /* загрузить и отобразить рекламу */
     private fun loadAds(isBanner: Boolean) {
         val testDeviceIds = listOf("9B942B4C4E9CE92FCF83851D1B14B507")
         val configuration = RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
 
+        // инициализация AdMob
         MobileAds.setRequestConfiguration(configuration)
         MobileAds.initialize(this)
 
         val adRequest = AdRequest.Builder().build()
 
-        if(!isBanner)
-        InterstitialAd.load(this,
-            INTERSTITIAL_KEY, adRequest, object : InterstitialAdLoadCallback() {
-            override fun onAdFailedToLoad(adError: LoadAdError) {
-                val error = "domain: ${adError.domain}, code: ${adError.code}, " +
-                        "message: ${adError.message}"
-                Log.d("loadAds", error)
+        if(!isBanner) { // если нужен не баннер
+            InterstitialAd.load(this,
+                    INTERSTITIAL_KEY, adRequest, object : InterstitialAdLoadCallback() {
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    val error = "domain: ${adError.domain}, code: ${adError.code}, " +
+                            "message: ${adError.message}"
+                    Log.d("loadAds", error)
 
-                mInterstitialAd = null
-            }
+                    mInterstitialAd = null
+                }
 
-            override fun onAdLoaded(interstitialAd: InterstitialAd) {
-                Log.d("loadAds", "Ad was loaded.")
+                override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                    if(DEBUG) Log.d("loadAds", "Ad was loaded.")
 
-                mInterstitialAd = interstitialAd
+                    mInterstitialAd = interstitialAd
 
-                if(mInterstitialAd != null)
-                    mInterstitialAd!!.show(this@MainActivity)
-            }
-        })
-
-        if(isBanner) {
+                    if(mInterstitialAd != null)
+                        mInterstitialAd!!.show(this@MainActivity)
+                }
+            })
+        } else { // если нужен баннер
             adView = AdView(this)
             adView!!.adSize = AdSize.BANNER
             adView!!.adUnitId = ADVIEW_KEY
 
-            findViewById<LinearLayout>(R.id.linear).addView(adView!!)
+            linear!!.addView(adView!!)
             adView!!.loadAd(adRequest)
         }
     }

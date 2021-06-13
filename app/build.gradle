@@ -13,8 +13,8 @@ android {
         minSdkVersion 21
         targetSdkVersion 30
 
-        versionCode 13
-        versionName '1.9.3'
+        versionCode 14
+        versionName '1.9.4'
     }
 
     buildTypes {
@@ -42,5 +42,5 @@ android {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'com.afollestad.material-dialogs:bottomsheets:3.3.0'
-    implementation 'com.google.android.gms:play-services-ads:20.1.0'
+    implementation 'com.google.android.gms:play-services-ads:20.2.0'
 }

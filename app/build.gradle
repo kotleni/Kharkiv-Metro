@@ -13,13 +13,22 @@ android {
         minSdkVersion 21
         targetSdkVersion 30
 
-        versionCode 14
-        versionName '1.9.4'
+        versionCode 15
+        versionName '1.9.5'
+
+        resConfigs "en", "ru", "ua"
+    }
+
+    packagingOptions {
+        exclude("META-INF/*.kotlin_module")
+        exclude("**.kotlin_builtins")
+        exclude("**.kotlin_metadata")
     }
 
     buildTypes {
         release {
             minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

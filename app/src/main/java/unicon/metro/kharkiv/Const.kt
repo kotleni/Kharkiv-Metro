@@ -2,7 +2,6 @@ package unicon.metro.kharkiv
 
 // booleans
 const val DEBUG = false
-const val REMOVE_ADD = false
 
 // urls
 const val MARKET_URL = "https://play.google.com/store/apps/details?id=unicon.metro.kharkiv"

@@ -1,9 +1,7 @@
 package unicon.metro.kharkiv.view
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
+import android.graphics.*
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.MotionEvent
@@ -40,6 +38,9 @@ class MetroView(var ctx: Context, var attr: AttributeSet) : View(ctx, attr) {
     // временные координаты
     private var dX = 0f
     private var dY = 0f
+
+    // выбранная станция
+    private var currentStance = -1
 
     private var mScaleGestureDetector: MyScaleGestureDetector? = null
     private var mScaleFactor = 1.0f
@@ -150,8 +151,16 @@ class MetroView(var ctx: Context, var attr: AttributeSet) : View(ctx, attr) {
                             textPaint
                         )
 
-                        if (rect.contains(vec.x, vec.y))
+                        val rrect = RectF(
+                            rect.left - BUBLE_SCALE,
+                            rect.top - BUBLE_SCALE,
+                            rect.right + BUBLE_SCALE,
+                            rect.bottom + BUBLE_SCALE
+                        )
+
+                        if (rrect.contains(vec.x.toFloat(), vec.y.toFloat())) {
                             return it
+                        }
                     }
                 }
             }
@@ -170,7 +179,7 @@ class MetroView(var ctx: Context, var attr: AttributeSet) : View(ctx, attr) {
                 (it as BranchElement).points.forEach { p: Point ->
                     paint.style = Paint.Style.FILL
                     paint.color = it.color
-                    paint.strokeWidth = 6f
+                    paint.strokeWidth = LINE_WIDTH
 
                     paint.strokeCap = Paint.Cap.ROUND
 
@@ -189,7 +198,7 @@ class MetroView(var ctx: Context, var attr: AttributeSet) : View(ctx, attr) {
 
                 paint.style = Paint.Style.FILL
                 paint.color = colorTrans
-                paint.strokeWidth = 6f
+                paint.strokeWidth = LINE_WIDTH
 
                 canvas!!.drawLine(scrollX + (padding + el.posA.x.toFloat()) * scale, scrollY + (padding + el.posA.y.toFloat()) * scale, scrollX + (padding + el.posB.x.toFloat()) * scale, scrollY + (padding + el.posB.y.toFloat()) * scale, paint)
             }
@@ -201,10 +210,11 @@ class MetroView(var ctx: Context, var attr: AttributeSet) : View(ctx, attr) {
                 (it as BranchElement).points.forEach { p: Point ->
                     if(p.name != null) {
                         paint.color = colorTextA
+
                         paint.style = Paint.Style.FILL
 
                         val rect = getTextBackgroundSize(scrollX + (padding + p.pos.x + 0f) * scale, scrollY + (padding + p.pos.y + 0f) * scale, resources.getString(p.name!!), textPaint)
-                        canvas!!.drawRect(rect, paint)
+                        canvas!!.drawRoundRect(RectF(rect.left.toFloat() - BUBLE_SCALE, rect.top.toFloat() - BUBLE_SCALE, rect.right.toFloat() + BUBLE_SCALE, rect.bottom.toFloat() + BUBLE_SCALE), 8f, 8f, paint)
                         canvas!!.drawText(resources.getString(p.name!!), scrollX + (padding + p.pos.x + 0f) * scale, scrollY + (padding + p.pos.y + 0f) * scale, textPaint)
                     }
                 }

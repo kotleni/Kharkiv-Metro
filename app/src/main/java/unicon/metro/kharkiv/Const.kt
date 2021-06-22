@@ -3,17 +3,20 @@ package unicon.metro.kharkiv
 // booleans
 const val DEBUG = false
 
-// urls
+// strs
 const val MARKET_URL = "https://play.google.com/store/apps/details?id=unicon.metro.kharkiv"
-
-// admob keys
-const val INTERSTITIAL_KEY = "ca-app-pub-8334416213766495/6209107906"
-const val ADVIEW_KEY = "ca-app-pub-8334416213766495/8544122047"
+const val SUPPORT_URL = "https://t.me/kotleni"
+const val EGG_TEXT = "Hello from st. Sportivna"
+const val PREFS_MAIN = "main"
 
 // colors
-const val COLOR_TEXT_A = "#F2F2F2"
-const val COLOR_TEXT_B = "#76919A"
+const val COLOR_TEXT_A = "#f7be33"
+const val COLOR_TEXT_B = "#ffffff"
 const val COLOR_TRANS = "#ff00ff"
+
+// drawing
+const val BUBLE_SCALE = 4f
+const val LINE_WIDTH = 8f
 
 // gestures
 const val SCALE_FACTOR_MIN = 1f

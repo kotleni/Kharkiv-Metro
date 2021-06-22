@@ -1,20 +1,26 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Theme.ХаркiвМетро" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+    <style name="Theme.ХаркiвМетро" parent="@style/Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">#d63a4f</item>
         <item name="colorPrimaryDark">#BC3446</item>
+        <item name="backgroundColor">#fbf8f3</item>
 
         <item name="android:textColorPrimary">#ffffff</item>
 
-        <item name="android:windowActionBar">true</item>
-        <item name="android:windowNoTitle">false</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
 
-        <item name="android:textAppearanceLargePopupMenu">@style/MyOverflowItemCollor</item>
+        <item name="textAppearanceLargePopupMenu">@style/MyPopupStyle</item>
         <item name="md_color_title">#212121</item>
         <item name="md_color_content">#3A3A3A</item>
     </style>
 
-    <style name="MyOverflowItemCollor" parent="android:TextAppearance.Holo.Widget.PopupMenu.Large">
+    <style name="MyPopupStyle" parent="android:TextAppearance.Holo.Widget.PopupMenu.Large">
         <item name="android:textColor">#212121</item>
         <item name="android:textSize">16dp</item>
+    </style>
+
+    <style name="Theme.ХаркiвМетро.Splash" parent="Theme.ХаркiвМетро">
+        <item name="background">@drawable/splash</item>
     </style>
 </resources>

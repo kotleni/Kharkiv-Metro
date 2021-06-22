@@ -1,19 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    xmlns:ads="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/linear"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:fitsSystemWindows="true">
 
     <unicon.metro.kharkiv.view.MetroView
-        android:id="@+id/metroview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"/>
+        android:id="@+id/metroView"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#212121"/>
-</LinearLayout>
+<!--    <com.google.android.material.bottomappbar.BottomAppBar-->
+<!--        android:id="@+id/bottomAppBar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="bottom"-->
+<!--        app:fabAlignmentMode="center"/>-->
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fab"
+        app:srcCompat="@drawable/ic_baseline_bolt_24"
+        app:tint="@android:color/white"
+        app:backgroundTint="#d63a4f"
+        android:layout_margin="16dp"
+        app:layout_anchorGravity="bottom|right"
+        app:layout_anchor="@id/metroView"
+        />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -2,11 +2,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/noads"
-        android:title="@string/noads"
-        app:showAsAction="never"/>
-
-    <item
         android:id="@+id/googlrplay"
         android:title="@string/google_play"
         app:showAsAction="never"/>

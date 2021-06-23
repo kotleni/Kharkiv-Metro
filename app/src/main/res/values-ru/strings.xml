@@ -1,12 +1,8 @@
 <resources>
     <string name="app_name">Харьков Метро</string>
-    <string name="noads">Настройка рекламы</string>
     <string name="google_play">Приложение в Google Play</string>
     <string name="about_m">Об приложении</string>
     <string name="about_text">Приложение для просмотра карты Харьковского метро, и получении дополнительной информации.</string>
-
-    <string name="ad_banner">Баннер</string>
-    <string name="ad_full">Полноэкранная</string>
 
     <!-- названия станций -->
     <string name="name_peremoga">Победа</string>

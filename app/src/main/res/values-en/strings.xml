@@ -1,0 +1,74 @@
+<resources>
+    <string name="app_name">Kharkiv Metro</string>
+    <string name="google_play">App in Google Play</string>
+    <string name="about_m">About</string>
+    <string name="about_text">App for view Kharkiv Metro map, and getting more information.</string>
+
+    <!-- названия станций -->
+    <string name="name_peremoga">Pobeda</string>
+    <string name="name_olecsiivka">Oleksievska</string>
+    <string name="name_23serpnya">23 Avgusta</string>
+    <string name="name_botanichniysad">Botanichniy sad</string>
+    <string name="name_naukova">Naukova</string>
+    <string name="name_dergprom">Dergprom</string>
+    <string name="name_arh_beketova">Architectora beketova</string>
+    <string name="name_zah_ukr">Zastnikov Ukraine</string>
+    <string name="name_metrobud">Metrobudivnikiv</string>
+
+    <string name="name_holodnagora">Holodna gora</string>
+    <string name="name_pivdvokzal">Uzniy vokzal</string>
+    <string name="name_centrarinok">Central rinok</string>
+    <string name="name_maydankonst">Maydan konstitucii</string>
+    <string name="name_prospect_gagarnina">Prospect Gagarina</string>
+    <string name="name_sportivna">Sportivnaya</string>
+    <string name="name_zavimenimalisheva">Zavod im Maliseva</string>
+    <string name="name_turboatom">Turboatom</string>
+    <string name="name_palacsporta">Palac sporta</string>
+    <string name="name_armiyska">Armeyska</string>
+    <string name="name_imosmaselscogo">Im. O. S. Maselskogo</string>
+    <string name="name_traktorzavod">Traktorniy zavod</string>
+    <string name="name_industrial">Industialna</string>
+
+    <string name="name_garoivwork">Geroyev truda</string>
+    <string name="name_studenstka">Studencheskaya</string>
+    <string name="name_akadempavl">Akademika Pavlova</string>
+    <string name="name_barabashova">Akademika Barabashova</string>
+    <string name="name_kievska">Kiyvskaya</string>
+    <string name="name_pushkinska">Pushkinska</string>
+    <string name="name_univer">Universitet</string>
+    <string name="name_istormisei">History musey</string>
+
+    <string name="desc_peremoga">30 station of the Kharkov metro. Located on the Alekseevskaya metro line behind the Alekseevskaya station. The construction of a northern bus station is planned near the station.</string>
+    <string name="desc_olecsiivka">29 station of the Kharkiv metro. Located on the Alekseevskaya metro line, between the 23 August and Pobeda stations. Opened December 21, 2010. Served as a temporary termination station of the line until August 25, 2016.</string>
+    <string name="desc_23serpnya">28 station of the Kharkov metro. It is located in the historical area of Pavlovo Pole on the Alekseevskaya metro line, between the Botanichesky Sad and Alekseevskaya stations.</string>
+    <string name="desc_botanichniysad">28 station of the Kharkov metro. It is located in the historical area of Pavlovo Pole on the Alekseevskaya metro line, between the Botanichesky Sad and Alekseevskaya stations.</string>
+    <string name="desc_naukova">26 station of the Kharkiv metro. It is located on the Alekseevskaya metro line between the Gosprom and Botanichesky Sad stations. Located on Nauki Avenue.</string>
+    <string name="desc_dergprom">Station 25 of the Kharkiv Metro, located under Svoboda Square, between the stations "Nauchnaya" and "Architect Beketov" on the Alekseevskaya line.</string>
+    <string name="desc_arh_beketova">24 station of the Kharkov metro. Located on the Alekseevskaya line between the stations Gosprom and Zashchitnikov Ukraine. Named in honor of the Ukrainian and Soviet architect and landscape painter Beketov Alexei Nikolaevich.</string>
+    <string name="desc_zah_ukr">23 station of the Kharkov metro. Located on the Alekseevskaya line between Metrostroiteley and Architect Beketov stations. It is located under the square of the Defenders of Ukraine.</string>
+    <string name="desc_metrobud">22 station of the Kharkov metro. Located near the intersection of Plekhanovskaya, Derzhavinskaya and Khramovaya streets.</string>
+
+    <string name="desc_holodnagora">1 station of the Kharkiv metro. The terminal station of the Kholodnogorsko-Zavodskaya line, located after the Yuzhny Vokzal station. It is named after the district of the same name. The station was opened as part of the first launch section of the Kharkiv metro called Sverdlova Street.</string>
+    <string name="desc_pivdvokzal">2 station of the Kharkiv metro. It got its name from the nearby large station, from which trains of suburban and international routes go.</string>
+    <string name="desc_centrarinok">3 station of the Kharkiv metro. Intermediate station of the Kholodnogorsko-Zavodskaya line, located between the stations "Yuzhny Vokzal" and "Ploschad Konstitutsii". Named after the building of the same name.</string>
+    <string name="desc_maydankonst">4 station of the Kharkiv metro. Until November 20, 2015 "Soviet". Located on the Kholodnogorsko-Zavodskaya metro line, between the Central Market and Prospect Gagarina stations. Has a transition to the station "Historical Museum" of the Saltovskaya line. Named after the square of the same name.</string>
+    <string name="desc_prospect_gagarnina" >5 station of the Kharkiv metro. It is located on the Kholodnogorsko-Zavodskaya metro line between Ploschad Konstitutsii and Sportivnaya stations.</string>
+    <string name="desc_sportivna">6 station of the Kharkiv metro. It is located on the Kholodnogorsko-Zavodskaya metro line between the stations Prospekt Gagarina and Zavod named after Malyshev. Located near the central stadium "Metallist", determined its name and architectural design in the form of a huge sports hall.</string>
+    <string name="desc_zavimenimalisheva" >7 station of the Kharkov metro. It got its name because of the close proximity to the central entrance of the largest industrial enterprise in Kharkov "KhZTM named after V. A. Malyshev".</string>
+    <string name="desc_turboatom" >8 station of the Kharkov metro. By October 16, 2019, it was called Moskovsky Prospekt. It got its current name because of the close proximity to the Turboatom plant.</string>
+    <string name="desc_palacsporta">9 station of the Kharkov metro. Located on the Kholodnogorsko-Zavodskaya metro line between Turboatom and Army stations</string>
+    <string name="desc_armiyska">10 station of the Kharkov metro. It is located on the Kholodnogorsko-Zavodskaya metro line between the Dvorets Sporta and Imeni A. Maselsky stations. Crossings of the station go to Moskovsky Prospekt and Oshchepkova Street, as well as towards Marshal Rybalko and Kharkiv Divisions Streets.</string>
+    <string name="desc_imosmaselscogo">The 11th station of the Kharkiv metro is located on the Kholodnogorsko-Zavodskaya metro line between the stations "Army" and "Tractor plant". Located at the intersection of Moskovsky Prospekt to Traktorostroiteley Avenue, which leads to the Saltovka residential area.</string>
+    <string name="desc_traktorzavod">12 station of the Kharkov metro. It is located on the Kholodnogorsko-Zavodskaya metro line between the stations “Imeni A. S. Maselsky” and “Industrialnaya”.</string>
+    <string name="desc_industrial">13 station of the Kharkov metro. Terminal station of the Kholodnogorsko-Zavodskaya line, located after the station "Tractor plant". It has a columnar type. Commissioned on August 11, 1978.</string>
+
+    <!-- синяя ветка -->
+    <string name="desc_garoivwork">21 stations of the Kharkiv metro, terminus on the Saltovskaya line. It is located at the intersection of Heroes Truda Street and Akademika Pavlova Street between 522, 521, 524 microdistricts and a shopping complex consisting of the Karavan SEC, the Dafi SEC, the Epicenter construction hypermarket, the Furniture Labyrinth furniture hypermarket, the Araks radio market and the market "Kutuzovsky".</string>
+    <string name="desc_studenstka">20 station of the Kharkov metro. Located on the Saltovskaya line between the stations "Heroes of Labor" and "Akademika Pavlova". The column is a three-aisle shallow station. Opened on October 24, 1986 as part of the second launch site of the second line "Barabashova" - "Heroes of Labor".</string>
+    <string name="desc_akadempavl">19 station of the Kharkov metro. Located on the Saltovskaya line, between the Studencheskaya and Akademika Barabashova stations.</string>
+    <string name="desc_barabashova">18 station of the Kharkov metro. Located on the Saltovskaya line, between the Akademika Pavlova and Kievskaya stations.</string>
+    <string name="desc_kievska">17 of the Kharkiv metro. Located between the stations "Akademika Barabashova" and "Pushkinskaya" of the Saltovskaya line. Located at the intersection of Shevchenko and Matyushenko streets.</string>
+    <string name="desc_pushkinska">16 station of the Kharkiv metro. Located between the stations "Kievskaya" and "University" of the Saltovskaya line. It is located in the Nagorny District under Yaroslav the Wise Square at the intersection of Pushkinskaya, Yaroslav the Wise and Gudanov Streets.</string>
+    <string name="desc_univer">Station 15 of the Kharkiv metro, located under Svoboda Square on the Saltovskaya line between the Istoricheskiy Museum and Pushkinskaya stations. United by the passage with the station "Gosprom" of the Alekseevskaya line. Exit to Sumskaya Street, Independence Avenue and Freedom Square.</string>
+    <string name="desc_istormisei">14 station of the Kharkiv metro, terminus on the Saltovskaya line. The next station on the line is "University". Above the station is the Constitution Square.</string>
+</resources>

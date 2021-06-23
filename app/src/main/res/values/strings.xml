@@ -1,12 +1,8 @@
 <resources>
     <string name="app_name">Харкiв Метро</string>
-    <string name="noads">Налаштувати рекламу</string>
     <string name="google_play">Додаток в Google Play</string>
     <string name="about_m">Про додаток</string>
     <string name="about_text">Додаток для перегляду карти Харкiвського метро, а також отримання додаткової iнформацiї.</string>
-
-    <string name="ad_banner">Баннер</string>
-    <string name="ad_full">Повноекранна</string>
 
     <!-- названия станций -->
     <string name="name_peremoga">Перемога</string>

@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Theme.ХаркiвМетро" parent="@style/Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">#d63a4f</item>
-        <item name="colorPrimaryDark">#BC3446</item>
+        <item name="colorPrimaryDark">#323232</item>
         <item name="backgroundColor">#fbf8f3</item>
 
         <item name="android:textColorPrimary">#ffffff</item>

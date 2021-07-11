@@ -20,7 +20,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:textColor="@android:color/black"
         android:textStyle="bold"
         android:text="@string/app_name"
         app:layout_anchor="@id/icon"
@@ -30,7 +29,6 @@
         android:id="@+id/about"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#000000"
         android:gravity="center"
         android:text="@string/about_text"
         app:layout_anchor="@id/name"
@@ -48,13 +46,13 @@
            android:layout_height="40dp"
            android:layout_margin="8dp"
            android:src="@drawable/ic_baseline_shopping_cart_24"
-           app:tint="#555555"
+           app:tint="?attr/colorPrimaryDark"
            android:id="@+id/market"/>
        <ImageView
            android:layout_width="40dp"
            android:layout_height="40dp"
            android:layout_margin="8dp"
-           app:tint="#555555"
+           app:tint="?attr/colorPrimaryDark"
            android:src="@drawable/ic_baseline_support_24"
            android:id="@+id/support"/>
    </LinearLayout>

@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Theme.ХаркiвМетро" parent="@style/Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">#d63a4f</item>
-        <item name="colorPrimaryDark">#BC3446</item>
+        <item name="colorPrimaryDark">#FBFBFB</item>
         <item name="backgroundColor">#fbf8f3</item>
 
         <item name="android:textColorPrimary">#ffffff</item>
@@ -13,6 +13,7 @@
         <item name="textAppearanceLargePopupMenu">@style/MyPopupStyle</item>
         <item name="md_color_title">#ffffff</item>
         <item name="md_color_content">#fafafa</item>
+        <item name="android:textColor">#fff</item>
     </style>
 
     <style name="MyPopupStyle" parent="android:TextAppearance.Holo.Widget.PopupMenu.Large">

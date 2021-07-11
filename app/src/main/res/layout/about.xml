@@ -5,7 +5,8 @@
     android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="32dp">
+    android:padding="32dp"
+    android:id="@+id/coordinator">
 
     <ImageView
         android:id="@+id/icon"

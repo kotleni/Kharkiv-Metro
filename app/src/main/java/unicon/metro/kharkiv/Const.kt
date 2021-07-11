@@ -6,7 +6,7 @@ const val DEBUG = false
 // strs
 const val MARKET_URL = "https://play.google.com/store/apps/details?id=unicon.metro.kharkiv"
 const val SUPPORT_URL = "https://t.me/kotleni"
-const val EGG_TEXT = "I love you... my girl..."
+const val EGG_TEXT = "Baka... Dont look!"
 const val PREFS_MAIN = "main"
 
 // colors

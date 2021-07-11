@@ -1,33 +1,23 @@
 package unicon.metro.kharkiv.activity
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
-import android.net.Uri
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import com.afollestad.materialdialogs.LayoutMode
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.bottomsheets.BottomSheet
-import com.afollestad.materialdialogs.customview.customView
-import com.afollestad.materialdialogs.customview.getCustomView
-import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import unicon.metro.kharkiv.*
+import unicon.metro.kharkiv.dialog.AboutDialog
+import unicon.metro.kharkiv.dialog.StationDialog
+import unicon.metro.kharkiv.model.MainModel
 import unicon.metro.kharkiv.types.Point
 import unicon.metro.kharkiv.types.elements.BaseElement
 import unicon.metro.kharkiv.view.MetroView
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.concurrent.thread
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), Observer {
     // views
     private lateinit var metroview: MetroView
     private lateinit var linear: CoordinatorLayout
@@ -37,9 +27,16 @@ class MainActivity : AppCompatActivity() {
     private lateinit var prefs: SharedPreferences
     private lateinit var mapData: ArrayList<BaseElement>
 
+    // model
+    private lateinit var mainModel: MainModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // model
+        mainModel = MainModel()
+        mainModel.addObserver(this)
 
         prefs = getSharedPreferences(PREFS_MAIN, Context.MODE_PRIVATE)
 
@@ -53,68 +50,29 @@ class MainActivity : AppCompatActivity() {
         doBackground()
     }
 
-    private fun openGooglePlay() {
-        val browserIntent2 = Intent(Intent.ACTION_VIEW, Uri.parse(MARKET_URL))
-        startActivity(browserIntent2)
-    }
-
-    private fun openSupportLink() {
-        val browserIntent2 = Intent(Intent.ACTION_VIEW, Uri.parse(SUPPORT_URL))
-        startActivity(browserIntent2)
+    override fun update(o: Observable?, arg: Any?) {
+        setupMap()
     }
 
     /* показать даилог 'О приложении' */
-    private fun showAboutDialog() {
-        val dialog = MaterialDialog(this, BottomSheet(LayoutMode.WRAP_CONTENT)).show {
-            customView(R.layout.about)
-        }
-
-        val icon = dialog.getCustomView().findViewById<ImageView>(R.id.icon)
-        val market = dialog.getCustomView().findViewById<ImageView>(R.id.market)
-        val support = dialog.getCustomView().findViewById<ImageView>(R.id.support)
-
-        icon.setOnLongClickListener {
-            dialog.dismiss()
-            Snackbar.make(linear, EGG_TEXT, Snackbar.LENGTH_LONG)
-                .show()
-
-            true
-        }
-
-        market.setOnClickListener {
-            openGooglePlay()
-        }
-
-        support.setOnClickListener {
-            openSupportLink()
-        }
-    }
+    private fun showAboutDialog() = AboutDialog(this).show()
 
     /* показать диалог стацнии*/
-    private fun showDialog(st: Point) {
-        MaterialDialog(this, BottomSheet(LayoutMode.WRAP_CONTENT)).show {
-            title(-1, resources.getString(st.name!!))
-            message(-1, getString(st.about))
-        }
-    }
+    private fun showStationDialog(st: Point) = StationDialog(this, st.name!!, st.about).show()
 
     /* загружаем данные в фоне */
     private fun doBackground() = thread {
         mapData = makeMapData()
 
         // возращаемся в ui поток
-        runOnUiThread {
-            setupMap()
-        }
+        runOnUiThread { mainModel.updateMap() }
     }
 
     /* настраиваем view карты */
     private fun setupMap() {
         metroview.setData(mapData)
         metroview.prepare(linear)
-        metroview.setOnItemClickListener {
-            showDialog(it)
-        }
+        metroview.setOnItemClickListener { showStationDialog(it) }
 
         metroview.invalidate()
     }

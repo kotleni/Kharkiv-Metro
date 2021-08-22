@@ -2,7 +2,7 @@ package unicon.metro.kharkiv.dialog
 
 import android.content.Context
 
-class StationDialog(var _ctx: Context, var name: Int, var about: Int) : BaseDialog(_ctx) {
+class StationDialog(_ctx: Context, var name: Int, var about: Int) : BaseDialog(_ctx) {
 
     override fun show() {
         getDialog().title(-1, ctx.resources.getString(name))

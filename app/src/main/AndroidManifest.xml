@@ -11,7 +11,7 @@
         android:screenOrientation="sensorLandscape"
         android:theme="@style/Theme.ХаркiвМетро"
         android:supportsRtl="true"
-        android:allowBackup="true">
+        android:allowBackup="false">
 
         <activity
             android:name=".activity.SplashActivity"

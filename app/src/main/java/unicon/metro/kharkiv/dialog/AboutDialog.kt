@@ -19,10 +19,10 @@ import unicon.metro.kharkiv.SUPPORT_URL
 class AboutDialog(var _ctx: Context) : BaseDialog(_ctx) {
 
     // views
-    private lateinit var icon: ImageView
-    private lateinit var marketBtn: ImageView
-    private lateinit var supportBtn: ImageView
-    private lateinit var coordinator: CoordinatorLayout
+    private var icon: ImageView
+    private var marketBtn: ImageView
+    private var supportBtn: ImageView
+    private var coordinator: CoordinatorLayout
 
     init {
         getDialog().customView(R.layout.about)
@@ -37,8 +37,7 @@ class AboutDialog(var _ctx: Context) : BaseDialog(_ctx) {
         // listeners
         icon.setOnLongClickListener {
             cancel()
-            Snackbar.make(coordinator, EGG_TEXT, Snackbar.LENGTH_LONG)
-                .show()
+            Snackbar.make(coordinator, EGG_TEXT, Snackbar.LENGTH_LONG).show()
 
             true
         }

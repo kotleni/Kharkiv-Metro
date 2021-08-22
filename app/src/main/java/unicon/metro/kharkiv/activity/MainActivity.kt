@@ -19,13 +19,13 @@ import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity(), Observer {
     // views
-    private lateinit var metroview: MetroView
-    private lateinit var linear: CoordinatorLayout
-    private lateinit var fab: FloatingActionButton
+    private val metroview: MetroView by lazy { findViewById(R.id.metroView) }
+    private val linear: CoordinatorLayout by lazy { findViewById(R.id.linear) }
+    private val fab: FloatingActionButton by lazy { findViewById(R.id.fab) }
 
     // ...
-    private lateinit var prefs: SharedPreferences
-    private lateinit var mapData: ArrayList<BaseElement>
+    private val prefs: SharedPreferences by lazy { getSharedPreferences(PREFS_MAIN, Context.MODE_PRIVATE) }
+    private val mapData: ArrayList<BaseElement> = ArrayList()
 
     // model
     private lateinit var mainModel: MainModel
@@ -37,13 +37,6 @@ class MainActivity : AppCompatActivity(), Observer {
         // model
         mainModel = MainModel()
         mainModel.addObserver(this)
-
-        prefs = getSharedPreferences(PREFS_MAIN, Context.MODE_PRIVATE)
-
-        // views
-        metroview = findViewById(R.id.metroView)
-        linear = findViewById(R.id.linear)
-        fab = findViewById(R.id.fab)
 
         fab.setOnClickListener { showAboutDialog() }
 
@@ -62,7 +55,9 @@ class MainActivity : AppCompatActivity(), Observer {
 
     /* загружаем данные в фоне */
     private fun doBackground() = thread {
-        mapData = makeMapData()
+        // обновляем данные карты
+        mapData.clear()
+        mapData.addAll(makeMapData())
 
         // возращаемся в ui поток
         runOnUiThread { mainModel.updateMap() }

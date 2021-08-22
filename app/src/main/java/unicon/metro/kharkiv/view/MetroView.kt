@@ -169,14 +169,15 @@ class MetroView(var ctx: Context, var attr: AttributeSet) : View(ctx, attr) {
         return null
     }
 
-    var lastBranchVec = Vector(-1, -1)
+    var defVector = Vector(-1, -1)
+    var lastBranchVec = defVector
     override fun onDraw(canvas: Canvas?) {
         // отрисовка линий
         data.forEach {
             if (it is BranchElement) {
-                lastBranchVec = Vector(-1, -1)
+                lastBranchVec = defVector
 
-                (it as BranchElement).points.forEach { p: Point ->
+                (it).points.forEach { p: Point ->
                     paint.style = Paint.Style.FILL
                     paint.color = it.color
                     paint.strokeWidth = LINE_WIDTH
@@ -215,7 +216,7 @@ class MetroView(var ctx: Context, var attr: AttributeSet) : View(ctx, attr) {
 
                         val rect = getTextBackgroundSize(scrollX + (padding + p.pos.x + 0f) * scale, scrollY + (padding + p.pos.y + 0f) * scale, resources.getString(p.name!!), textPaint)
                         canvas!!.drawRoundRect(RectF(rect.left.toFloat() - BUBLE_SCALE, rect.top.toFloat() - BUBLE_SCALE, rect.right.toFloat() + BUBLE_SCALE, rect.bottom.toFloat() + BUBLE_SCALE), 8f, 8f, paint)
-                        canvas!!.drawText(resources.getString(p.name!!), scrollX + (padding + p.pos.x + 0f) * scale, scrollY + (padding + p.pos.y + 0f) * scale, textPaint)
+                        canvas.drawText(resources.getString(p.name!!), scrollX + (padding + p.pos.x + 0f) * scale, scrollY + (padding + p.pos.y + 0f) * scale, textPaint)
                     }
                 }
             }
@@ -223,14 +224,14 @@ class MetroView(var ctx: Context, var attr: AttributeSet) : View(ctx, attr) {
     }
 
     private class ScaleListener(var thiz: MetroView) : MyScaleGestureDetector.SimpleOnScaleGestureListener() {
-        override fun onScale(scaleGestureDetector: MyScaleGestureDetector?): Boolean {
-            thiz.mScaleFactor *= scaleGestureDetector!!.getScaleFactor()
+        override fun onScale(detector: MyScaleGestureDetector?): Boolean {
+            thiz.mScaleFactor *= detector!!.getScaleFactor()
             thiz.mScaleFactor = Math.max(SCALE_FACTOR_MIN, Math.min(thiz.mScaleFactor, SCALE_FACTOR_MAX))
 
             thiz.scaleX = thiz.mScaleFactor
             thiz.scaleY = thiz.mScaleFactor
 
-            return super.onScale(scaleGestureDetector)
+            return super.onScale(detector)
         }
     }
 }

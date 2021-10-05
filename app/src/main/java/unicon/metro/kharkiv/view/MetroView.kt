@@ -1,5 +1,6 @@
 package unicon.metro.kharkiv.view
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.*
 import android.text.TextPaint
@@ -15,7 +16,7 @@ import unicon.metro.kharkiv.types.elements.BranchElement
 import unicon.metro.kharkiv.types.elements.TransElement
 
 
-class MetroView(var ctx: Context, var attr: AttributeSet) : View(ctx, attr) {
+class MetroView(var ctx: Context, attr: AttributeSet) : View(ctx, attr) {
     private var data = ArrayList<BaseElement>() // данные для отображения
 
     private val size = Size(240, 320)
@@ -39,9 +40,6 @@ class MetroView(var ctx: Context, var attr: AttributeSet) : View(ctx, attr) {
     private var dX = 0f
     private var dY = 0f
 
-    // выбранная станция
-    private var currentStance = -1
-
     private var mScaleGestureDetector: MyScaleGestureDetector? = null
     private var mScaleFactor = 1.0f
     private var lock = false
@@ -51,7 +49,7 @@ class MetroView(var ctx: Context, var attr: AttributeSet) : View(ctx, attr) {
     private var onItemClickListener: ((st: Point) -> Unit)? = null
 
     /* подготовить к работе */
-    fun prepare(root: View) {
+    fun prepare() {
         val thiz = this
 
         // настраиваем пеинт для текста
@@ -64,7 +62,8 @@ class MetroView(var ctx: Context, var attr: AttributeSet) : View(ctx, attr) {
         mScaleGestureDetector!!.isQuickScaleEnabled = SCALE_QUICK_ENABLE
 
         // обрабатываем нажатия
-        this.setOnTouchListener(object : View.OnTouchListener {
+        this.setOnTouchListener(object : OnTouchListener {
+            @SuppressLint("ClickableViewAccessibility")
             override fun onTouch(v: View?, event: MotionEvent?): Boolean {
                 if (event!!.pointerCount > 1) {
                     mScaleGestureDetector!!.onTouchEvent(event)
@@ -135,12 +134,10 @@ class MetroView(var ctx: Context, var attr: AttributeSet) : View(ctx, attr) {
         super.onSizeChanged(w, h, oldw, oldh)
     }
 
-    override fun performClick(): Boolean {
-        return super.performClick()
-    }
+    override fun performClick(): Boolean = super.performClick()
 
     fun onTouch(vec: Vector) : Point? {
-        data.forEach {
+        data.forEach { it ->
             if(it is BranchElement) {
                 it.points.forEach {
                     if(it.name != null) {
@@ -169,8 +166,10 @@ class MetroView(var ctx: Context, var attr: AttributeSet) : View(ctx, attr) {
         return null
     }
 
-    var defVector = Vector(-1, -1)
-    var lastBranchVec = defVector
+    private var defVector = Vector(-1, -1)
+    private var lastBranchVec = defVector
+
+    @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas?) {
         // отрисовка линий
         data.forEach {
@@ -193,29 +192,37 @@ class MetroView(var ctx: Context, var attr: AttributeSet) : View(ctx, attr) {
         }
 
         // отрисовка пересадок
-        data.forEach {
-            if (it is TransElement) {
-                val el = (it as TransElement)
-
+        data.forEach { el ->
+            if (el is TransElement) {
                 paint.style = Paint.Style.FILL
                 paint.color = colorTrans
                 paint.strokeWidth = LINE_WIDTH
 
-                canvas!!.drawLine(scrollX + (padding + el.posA.x.toFloat()) * scale, scrollY + (padding + el.posA.y.toFloat()) * scale, scrollX + (padding + el.posB.x.toFloat()) * scale, scrollY + (padding + el.posB.y.toFloat()) * scale, paint)
+                canvas!!.drawLine(
+                    scrollX + (padding + el.posA.x.toFloat()) * scale,
+                    scrollY + (padding + el.posA.y.toFloat()) * scale,
+                    scrollX + (padding + el.posB.x.toFloat()) * scale,
+                    scrollY + (padding + el.posB.y.toFloat()) * scale,
+                    paint)
             }
         }
 
         // отрисовка станций
         data.forEach {
             if (it is BranchElement) {
-                (it as BranchElement).points.forEach { p: Point ->
+                it.points.forEach { p: Point ->
                     if(p.name != null) {
                         paint.color = colorTextA
 
                         paint.style = Paint.Style.FILL
 
                         val rect = getTextBackgroundSize(scrollX + (padding + p.pos.x + 0f) * scale, scrollY + (padding + p.pos.y + 0f) * scale, resources.getString(p.name!!), textPaint)
-                        canvas!!.drawRoundRect(RectF(rect.left.toFloat() - BUBLE_SCALE, rect.top.toFloat() - BUBLE_SCALE, rect.right.toFloat() + BUBLE_SCALE, rect.bottom.toFloat() + BUBLE_SCALE), 8f, 8f, paint)
+                        canvas!!.drawRoundRect(
+                            RectF(rect.left.toFloat() - BUBLE_SCALE,
+                                rect.top.toFloat() - BUBLE_SCALE,
+                                rect.right.toFloat() + BUBLE_SCALE,
+                                rect.bottom.toFloat() + BUBLE_SCALE),
+                            8f, 8f, paint)
                         canvas.drawText(resources.getString(p.name!!), scrollX + (padding + p.pos.x + 0f) * scale, scrollY + (padding + p.pos.y + 0f) * scale, textPaint)
                     }
                 }

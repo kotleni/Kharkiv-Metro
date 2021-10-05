@@ -59,14 +59,15 @@ class MainActivity : AppCompatActivity(), Observer {
         mapData.clear()
         mapData.addAll(makeMapData())
 
-        // возращаемся в ui поток
-        runOnUiThread { mainModel.updateMap() }
+        runOnUiThread { // возращаемся в ui поток
+            mainModel.updateMap() // обновляем карту
+        }
     }
 
     /* настраиваем view карты */
     private fun setupMap() {
         metroview.setData(mapData)
-        metroview.prepare(linear)
+        metroview.prepare()
         metroview.setOnItemClickListener { showStationDialog(it) }
 
         metroview.invalidate()

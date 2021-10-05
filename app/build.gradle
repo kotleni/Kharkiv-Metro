@@ -10,11 +10,11 @@ android {
     defaultConfig {
         applicationId "unicon.metro.kharkiv"
 
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 30
 
-        versionCode 20
-        versionName '2.0.4' // s
+        versionCode 21
+        versionName '2.0.5'
 
         resConfigs "en", "ru", "ua"
     }

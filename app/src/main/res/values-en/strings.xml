@@ -3,6 +3,7 @@
     <string name="google_play">App in Google Play</string>
     <string name="about_m">About</string>
     <string name="about_text">App for view Kharkiv Metro map, and getting more information.</string>
+    <string name="close">Close</string>
 
     <!-- названия станций -->
     <string name="name_peremoga">Pobeda</string>

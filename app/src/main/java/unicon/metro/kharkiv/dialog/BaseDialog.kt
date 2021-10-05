@@ -9,7 +9,10 @@ open class BaseDialog(var ctx: Context) {
     private val dialog = MaterialDialog(ctx, BottomSheet(LayoutMode.WRAP_CONTENT))
 
     open fun show() {
-        dialog.show()
+        dialog.apply {
+            cornerRadius(16f)
+            show()
+        }
     }
 
     open fun cancel() {

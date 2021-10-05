@@ -20,8 +20,4 @@
         <item name="android:textColor">#212121</item>
         <item name="android:textSize">16dp</item>
     </style>
-
-    <style name="Theme.ХаркiвМетро.Splash" parent="Theme.ХаркiвМетро">
-        <item name="background">@drawable/splash</item>
-    </style>
 </resources>

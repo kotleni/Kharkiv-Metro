@@ -1,12 +1,16 @@
 package unicon.metro.kharkiv.dialog
 
 import android.content.Context
+import unicon.metro.kharkiv.R
 
-class StationDialog(_ctx: Context, var name: Int, var about: Int) : BaseDialog(_ctx) {
+class StationDialog(_ctx: Context, var nameId: Int, var aboutId: Int) : BaseDialog(_ctx) {
 
     override fun show() {
-        getDialog().title(-1, ctx.resources.getString(name))
-        getDialog().message(-1, ctx.resources.getString(about))
+        getDialog().apply {
+            icon(R.mipmap.ic_launcher)
+            title(nameId)
+            message(aboutId)
+        }
 
         super.show()
     }

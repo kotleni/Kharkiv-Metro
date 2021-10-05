@@ -7,7 +7,7 @@ class StationDialog(_ctx: Context, var nameId: Int, var aboutId: Int) : BaseDial
 
     override fun show() {
         getDialog().apply {
-            icon(R.mipmap.ic_launcher)
+            icon(R.mipmap.ic_launcher_foreground)
             title(nameId)
             message(aboutId)
         }

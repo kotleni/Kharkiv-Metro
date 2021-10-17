@@ -169,14 +169,13 @@ class MetroView(var ctx: Context, attr: AttributeSet) : View(ctx, attr) {
     private var defVector = Vector(-1, -1)
     private var lastBranchVec = defVector
 
-    @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas?) {
         // отрисовка линий
         data.forEach {
             if (it is BranchElement) {
                 lastBranchVec = defVector
 
-                (it).points.forEach { p: Point ->
+                it.points.forEach { p: Point ->
                     paint.style = Paint.Style.FILL
                     paint.color = it.color
                     paint.strokeWidth = LINE_WIDTH

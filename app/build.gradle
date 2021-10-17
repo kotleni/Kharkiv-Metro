@@ -4,17 +4,16 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    compileSdkVersion 31
 
     defaultConfig {
         applicationId "unicon.metro.kharkiv"
 
         minSdkVersion 23
-        targetSdkVersion 30
+        targetSdkVersion 31
 
-        versionCode 22
-        versionName '2.0.5'
+        versionCode 23
+        versionName '2.0.6'
 
         resConfigs "en", "ru", "ua"
     }

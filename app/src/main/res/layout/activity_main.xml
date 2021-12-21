@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/linear"
+    android:background="@color/black2"
     android:orientation="vertical"
     android:fitsSystemWindows="true">
 
@@ -17,9 +18,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/fab"
-        app:srcCompat="@drawable/ic_baseline_bolt_24"
+        app:srcCompat="@drawable/ic_baseline_menu_24"
         app:tint="@android:color/white"
-        app:backgroundTint="#d63a4f"
+        app:backgroundTint="#5A5757"
         android:layout_margin="16dp"
         app:layout_anchorGravity="bottom|right"
         app:layout_anchor="@id/metroView"/>

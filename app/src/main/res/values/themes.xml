@@ -1,17 +1,21 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Theme.ХаркiвМетро" parent="@style/Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- force non system dark mode -->
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+
         <item name="colorPrimary">#d63a4f</item>
         <item name="colorPrimaryDark">#323232</item>
         <item name="backgroundColor">#fbf8f3</item>
 
         <item name="android:textColorPrimary">#ffffff</item>
 
-        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightStatusBar">false</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
 
         <item name="textAppearanceLargePopupMenu">@style/MyPopupStyle</item>
-        <item name="md_color_title">#212121</item>
-        <item name="md_color_content">#3A3A3A</item>
+        <item name="md_color_title">#FFFFFF</item>
+        <item name="md_color_content">#FFFFFF</item>
+        <item name="md_background_color">@color/black2</item>
     </style>
 
     <style name="MyPopupStyle" parent="android:TextAppearance.Holo.Widget.PopupMenu.Large">

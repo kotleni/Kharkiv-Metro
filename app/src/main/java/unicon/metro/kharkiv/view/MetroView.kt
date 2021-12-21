@@ -134,7 +134,8 @@ class MetroView(var ctx: Context, attr: AttributeSet) : View(ctx, attr) {
         super.onSizeChanged(w, h, oldw, oldh)
     }
 
-    override fun performClick(): Boolean = super.performClick()
+    override fun performClick(): Boolean =
+        super.performClick()
 
     fun onTouch(vec: Vector) : Point? {
         data.forEach { it ->
@@ -221,7 +222,7 @@ class MetroView(var ctx: Context, attr: AttributeSet) : View(ctx, attr) {
                                 rect.top.toFloat() - BUBLE_SCALE,
                                 rect.right.toFloat() + BUBLE_SCALE,
                                 rect.bottom.toFloat() + BUBLE_SCALE),
-                            8f, 8f, paint)
+                            28f, 28f, paint)
                         canvas.drawText(resources.getString(p.name!!), scrollX + (padding + p.pos.x + 0f) * scale, scrollY + (padding + p.pos.y + 0f) * scale, textPaint)
                     }
                 }

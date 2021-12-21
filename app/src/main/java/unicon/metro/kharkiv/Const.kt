@@ -5,11 +5,11 @@ const val DEBUG = false
 
 // strs
 const val MARKET_URL = "https://play.google.com/store/apps/details?id=unicon.metro.kharkiv"
-const val SUPPORT_URL = "https://t.me/kotleni"
+const val GITHUB_URL = "https://github.com/kotleni/kharkiv-metro"
 const val PREFS_MAIN = "main"
 
 // colors
-const val COLOR_TEXT_A = "#f7be33"
+const val COLOR_TEXT_A = "#626262"
 const val COLOR_TEXT_B = "#ffffff"
 const val COLOR_TRANS = "#ff00ff"
 

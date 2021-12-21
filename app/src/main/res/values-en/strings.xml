@@ -72,4 +72,7 @@
     <string name="desc_pushkinska">16 station of the Kharkiv metro. Located between the stations "Kievskaya" and "University" of the Saltovskaya line. It is located in the Nagorny District under Yaroslav the Wise Square at the intersection of Pushkinskaya, Yaroslav the Wise and Gudanov Streets.</string>
     <string name="desc_univer">Station 15 of the Kharkiv metro, located under Svoboda Square on the Saltovskaya line between the Istoricheskiy Museum and Pushkinskaya stations. United by the passage with the station "Gosprom" of the Alekseevskaya line. Exit to Sumskaya Street, Independence Avenue and Freedom Square.</string>
     <string name="desc_istormisei">14 station of the Kharkiv metro, terminus on the Saltovskaya line. The next station on the line is "University". Above the station is the Constitution Square.</string>
+    <string name="googleplay">App in Google Play</string>
+    <string name="github">Source code on Github</string>
+    <string name="version_str">Version {}</string>
 </resources>

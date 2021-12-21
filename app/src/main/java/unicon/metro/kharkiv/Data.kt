@@ -49,7 +49,7 @@ fun makeMapData() : ArrayList<BaseElement> {
             Vector(302, 267), R.string.name_metrobud,
             R.string.desc_metrobud
         )
-    ), Color.parseColor("#41AF63"))
+    ), Color.parseColor("#53ad63"))
     )
 
     // красная ветка
@@ -107,7 +107,7 @@ fun makeMapData() : ArrayList<BaseElement> {
             Vector(419, 430), R.string.name_industrial,
             R.string.desc_industrial
         )
-    ), Color.parseColor("#D94F44"))
+    ), Color.parseColor("#e34146"))
     )
 
     // синяя ветка
@@ -147,7 +147,7 @@ fun makeMapData() : ArrayList<BaseElement> {
             Vector(162, 197), R.string.name_istormisei,
             R.string.desc_istormisei
         )
-    ), Color.parseColor("#4062A5"))
+    ), Color.parseColor("#147bc7"))
     )
 
     // пересадки

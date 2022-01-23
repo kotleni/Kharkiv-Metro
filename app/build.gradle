@@ -4,16 +4,16 @@ plugins {
 }
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 30
 
     defaultConfig {
         applicationId "unicon.metro.kharkiv"
 
         minSdkVersion 23
-        targetSdkVersion 31
+        targetSdkVersion 30
 
-        versionCode 24
-        versionName '2.0.7'
+        versionCode 25
+        versionName '2.0.8'
 
         resConfigs "en", "ru", "ua"
     }
@@ -52,4 +52,12 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'com.afollestad.material-dialogs:bottomsheets:3.3.0'
+
+//    implementation 'com.google.android.gms:play-services-basement:17.6.0'
+//    implementation 'com.google.firebase:firebase-ads:19.5.0'
+
+    def billing_version = "4.0.0"
+
+    implementation "com.android.billingclient:billing:$billing_version"
+    implementation "com.android.billingclient:billing-ktx:$billing_version"
 }

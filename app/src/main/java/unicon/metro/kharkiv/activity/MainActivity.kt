@@ -18,16 +18,13 @@ import kotlin.collections.ArrayList
 import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity(), Observer {
-    // views
     private val metroview: MetroView by lazy { findViewById(R.id.metroView) }
-    private val linear: CoordinatorLayout by lazy { findViewById(R.id.linear) }
+    // private val linear: CoordinatorLayout by lazy { findViewById(R.id.linear) }
     private val fab: FloatingActionButton by lazy { findViewById(R.id.fab) }
 
-    // ...
-    private val prefs: SharedPreferences by lazy { getSharedPreferences(PREFS_MAIN, Context.MODE_PRIVATE) }
     private val mapData: ArrayList<BaseElement> = ArrayList()
 
-    // model
+    // fixme: stupid viewmodel
     private lateinit var mainModel: MainModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,24 +44,28 @@ class MainActivity : AppCompatActivity(), Observer {
         setupMap()
     }
 
-    /* показать даилог 'О приложении' */
-    private fun showAboutDialog() = AboutDialog(this).show()
+    // show about dialog
+    private fun showAboutDialog() {
+        AboutDialog(this).show()
+    }
 
-    /* показать диалог стацнии*/
-    private fun showStationDialog(st: Point) = StationDialog(this, st.name!!, st.about).show()
+    // show station dialog
+    private fun showStationDialog(st: Point) {
+        StationDialog(this, st.name!!, st.about).show()
+    }
 
-    /* загружаем данные в фоне */
+    // loading data in background
     private fun doBackground() = thread {
-        // обновляем данные карты
+        // update map data
         mapData.clear()
         mapData.addAll(makeMapData())
 
-        runOnUiThread { // возращаемся в ui поток
-            mainModel.updateMap() // обновляем карту
+        runOnUiThread {
+            mainModel.updateMap()
         }
     }
 
-    /* настраиваем view карты */
+    // setup metroview map
     private fun setupMap() {
         metroview.setData(mapData)
         metroview.prepare()

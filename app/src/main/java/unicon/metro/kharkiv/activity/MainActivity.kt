@@ -5,6 +5,9 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import unicon.metro.kharkiv.*
 import unicon.metro.kharkiv.dialog.AboutDialog
@@ -21,6 +24,7 @@ class MainActivity : AppCompatActivity(), Observer {
     private val metroview: MetroView by lazy { findViewById(R.id.metroView) }
     // private val linear: CoordinatorLayout by lazy { findViewById(R.id.linear) }
     private val fab: FloatingActionButton by lazy { findViewById(R.id.fab) }
+    private val adView: AdView by lazy { findViewById(R.id.adView) }
 
     private val mapData: ArrayList<BaseElement> = ArrayList()
 
@@ -30,6 +34,10 @@ class MainActivity : AppCompatActivity(), Observer {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        MobileAds.initialize(this) { }
+        val adRequest = AdRequest.Builder()
+        adView.loadAd(adRequest.build())
 
         // model
         mainModel = MainModel()

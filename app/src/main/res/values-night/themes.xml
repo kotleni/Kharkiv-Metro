@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Theme.ХаркiвМетро" parent="@style/Theme.Material3.Light.NoActionBar">
+    <style name="Theme.ХаркiвМетро" parent="@style/Theme.Material3.Dark.NoActionBar">
     </style>
 
     <style name="MyPopupStyle" parent="android:TextAppearance.Holo.Widget.PopupMenu.Large">

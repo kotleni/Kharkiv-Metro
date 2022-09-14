@@ -1,8 +1,11 @@
 package unicon.metro.kharkiv
 
+import android.content.Context
 import android.graphics.Paint
 import android.graphics.Rect
 import android.text.TextPaint
+import android.util.TypedValue
+import androidx.annotation.AttrRes
 
 fun getTextBackgroundSize(
     x: Float,
@@ -18,4 +21,10 @@ fun getTextBackgroundSize(
         (x + halfTextLength).toInt(),
         (y + fontMetrics.bottom).toInt()
     )
+}
+
+fun Context.getColorByAttr(@AttrRes id: Int): Int {
+    val typedValue: TypedValue = TypedValue()
+    theme.resolveAttribute(id, typedValue, true)
+    return typedValue.data
 }

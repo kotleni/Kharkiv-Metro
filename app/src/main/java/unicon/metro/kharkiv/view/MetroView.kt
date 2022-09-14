@@ -5,6 +5,7 @@ import android.content.Context
 import android.graphics.*
 import android.text.TextPaint
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.MotionEvent
 import android.view.View
 import unicon.metro.kharkiv.*
@@ -24,8 +25,8 @@ class MetroView(var ctx: Context, attr: AttributeSet) : View(ctx, attr) {
     private val textPaint = TextPaint()
 
     // цвета
-    private val colorTextA = Color.parseColor(COLOR_TEXT_A)
-    private val colorTextB = Color.parseColor(COLOR_TEXT_B)
+    private val colorTextA = ctx.getColorByAttr(R.attr.colorAccent) // text rect
+    private val colorTextB = ctx.getColorByAttr(R.attr.colorOnPrimary) // text color
     private val colorTrans = Color.parseColor(COLOR_TRANS)
 
     // настройки отрисовки

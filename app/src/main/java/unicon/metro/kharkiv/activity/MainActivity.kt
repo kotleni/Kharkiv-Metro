@@ -3,6 +3,7 @@ package unicon.metro.kharkiv.activity
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.google.android.gms.ads.AdRequest
@@ -37,7 +38,8 @@ class MainActivity : AppCompatActivity(), Observer {
 
         MobileAds.initialize(this) { }
         val adRequest = AdRequest.Builder()
-        adView.loadAd(adRequest.build())
+        adView.visibility = View.GONE
+        //adView.loadAd(adRequest.build())
 
         // model
         mainModel = MainModel()

@@ -38,8 +38,8 @@ class MainActivity : AppCompatActivity(), Observer {
 
         MobileAds.initialize(this) { }
         val adRequest = AdRequest.Builder()
-        adView.visibility = View.GONE
-        //adView.loadAd(adRequest.build())
+        // adView.visibility = View.GONE
+        adView.loadAd(adRequest.build())
 
         // model
         mainModel = MainModel()
